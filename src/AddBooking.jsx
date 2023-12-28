@@ -24,9 +24,9 @@ export const AddBooking = () => {
 
   return (
     <div>
-      <input type="time" ref={timeElement}></input>
-      <input type="text" ref={nameElement}></input>
-      <button onClick={onClick}>Create booking</button>
+      <input type="time" ref={timeElement} test-id="addbooking-time"></input>
+      <input type="text" ref={nameElement} test-id="addbooking-name"></input>
+      <button onClick={onClick} test-id="addbooking-create">Create booking</button>
     </div>
   )
 };
