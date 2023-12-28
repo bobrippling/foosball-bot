@@ -2,7 +2,7 @@ import React from "react";
 import { useQueryClient, useMutation } from "react-query";
 
 import { onAddBooking, findOverlap, useBookings } from "./bookings";
-import * as Time from "./time"
+import { Time } from "./time"
 
 export const AddBooking = () => {
   const enabled = !useBookings().isLoading;
@@ -27,20 +27,21 @@ export const AddBooking = () => {
       return;
     }
 
-    const userDate = timeElement.current.valueAsDate;
+    const userDate = timeElement.current.value;
     if(!userDate){
       alert("No start time given for game");
       return;
     }
-    const start = Time.from(userDate);
+    const [h, m] = userDate.split(":");
+    const time = Time.at(Number(h), Number(m));
 
-    const overlap = findOverlap(queryClient, start);
+    const overlap = findOverlap(queryClient, time);
     if (overlap) {
       alert(`Game overlaps with ${overlap.name}`);
       return;
     }
 
-    addBooking.mutate({ name, start });
+    addBooking.mutate({ name, time });
   };
 
   return (

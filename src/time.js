@@ -1,12 +1,28 @@
-export const at = (h, m) => {
-	const d = new Date();
+const pad0 = n => n < 10 ? "0" + n : n;
 
-	d.setHours(h);
-	d.setMinutes(m);
-	d.setSeconds(0);
-	d.setMilliseconds(0);
+export class Time {
+	constructor(h, m, duration = 30) {
+		this.h = h;
+		this.m = m;
+		this.duration = duration;
+	}
 
-	return d;
-};
+	static at(h, m) {
+		return new Time(h, m);
+	}
 
-export const from = date => at(date.getHours(), date.getMinutes());
+	overlaps(other) {
+		const thisStart = this.h * 60 + this.m;
+		const otherStart = other.h * 60 + other.m;
+
+		const thisEnd = thisStart + this.duration - 1;
+		const otherEnd = otherStart + other.duration - 1;
+
+		return thisStart <= otherStart && otherStart < thisEnd
+			|| thisStart <= otherEnd && otherEnd < thisEnd;
+	}
+
+	format() {
+		return `${pad0(this.h)}:${pad0(this.m)}`;
+	}
+}

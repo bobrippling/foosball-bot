@@ -1,28 +1,18 @@
 import React from "react";
 import { useQuery } from "react-query";
 
-import * as Time from "./time"
+import { Time } from "./time"
 
-export const onAddBooking = ({ name, start }) => {
-  reservations.push({ name, start });
+export const onAddBooking = ({ name, time }) => {
+  reservations.push({ name, time });
 };
 
-export const findOverlap = (queryClient, start) => {
-  const end = new Date(start);
-  end.setMinutes(end.getMinutes() + 30);
-
+export const findOverlap = (queryClient, time) => {
   const bookings = queryClient.queryCache.queriesMap['["bookings"]'].state.data;
 
-  for (const booking of bookings) {
-    const bookingEnd = new Date(booking.start);
-    bookingEnd.setMinutes(bookingEnd.getMinutes() + 30);
-
-    if ((start <= booking.start && booking.start < end)
-    || (end <= booking.end && booking.end < end))
-    {
+  for (const booking of bookings)
+    if (time.overlaps(booking.time))
       return booking;
-    }
-  }
 
   return null;
 };
@@ -37,7 +27,7 @@ export const useBookings = () => {
         reservations = [
           {
             name: "Rob, Lena & Tawseef vs. javascript",
-            start: Time.at(13, 30),
+            time: Time.at(13, 30),
           }
         ];
       }
