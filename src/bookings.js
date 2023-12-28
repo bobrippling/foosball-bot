@@ -1,41 +1,54 @@
 import React from "react";
+import { useQuery } from "react-query";
+
 import * as Time from "./time"
 
-// stored locally in a hack here until we add a server
-let setBookings;
-let bookings;
+export const onAddBooking = ({ name, start }) => {
+  reservations.push({ name, start });
+};
 
-export const addBooking = ({ name, start }) => {
-  setBookings([
-    ...bookings,
-    { name, start },
-  ]);
-}
+export const findOverlap = (queryClient, start) => {
+  const end = new Date(start);
+  end.setMinutes(end.getMinutes() + 30);
+
+  const bookings = queryClient.queryCache.queriesMap['["bookings"]'].state.data;
+
+  for (const booking of bookings) {
+    const bookingEnd = new Date(booking.start);
+    bookingEnd.setMinutes(bookingEnd.getMinutes() + 30);
+
+    if ((start <= booking.start && booking.start < end)
+    || (end <= booking.end && booking.end < end))
+    {
+      return booking;
+    }
+  }
+
+  return null;
+};
 
 export const useBookings = () => {
-  const [bookings_, setBookings_] = React.useState();
-  const r = React.useRef();
+  return useQuery(
+    "bookings",
+    async () => {
+      if(reservations == null){
+        await new Promise(res => setTimeout(res, 1000));
 
-  setBookings = setBookings_;
-  bookings = bookings_;
-
-  if (bookings == null && !r.scheduled) {
-    setTimeout(
-      () => {
-        setBookings([
+        reservations = [
           {
             name: "Rob, Lena & Tawseef vs. javascript",
             start: Time.at(13, 30),
-          },
-        ]);
-      },
-      1000,
-    );
-    r.scheduled = true;
-  }
+          }
+        ];
+      }
 
-  return {
-    isLoading: bookings == null,
-    data: bookings,
-  };
+      return reservations;
+
+      //fetch(
+      //    ...
+      //).then((res) => res.json())
+    },
+  );
 };
+
+let reservations;

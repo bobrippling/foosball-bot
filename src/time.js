@@ -8,3 +8,5 @@ export const at = (h, m) => {
 
 	return d;
 };
+
+export const from = date => at(date.getHours(), date.getMinutes());
