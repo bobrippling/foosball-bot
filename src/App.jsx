@@ -9,11 +9,11 @@ export const App = () => {
   return (
     <div className="app">
       <h1>Social Hub Operator</h1>
-      <div class="container">
-        <div class="Items">
+      <div className="container">
+        <div className="Items">
           <Items />
         </div>
-        <div class="Timeslots">
+        <div className="Timeslots">
           <AddBooking />
           <Bookings />
           <Timetable />
