@@ -18,8 +18,10 @@ export const Bookings = () => {
   );
 }
 
+const formatTime = time => time.toLocaleTimeString();
+
 const Booking = ({ game }) => (
   <li>
-    {game.name}
+    {formatTime(game.start)} - {game.name}
   </li>
 )

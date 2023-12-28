@@ -1,8 +1,23 @@
 import React from "react";
+import * as Time from "./time"
+
+// stored locally in a hack here until we add a server
+let setBookings;
+let bookings;
+
+export const addBooking = ({ name, start }) => {
+  setBookings([
+    ...bookings,
+    { name, start },
+  ]);
+}
 
 export const useBookings = () => {
-  const [bookings, setBookings] = React.useState();
+  const [bookings_, setBookings_] = React.useState();
   const r = React.useRef();
+
+  setBookings = setBookings_;
+  bookings = bookings_;
 
   if (bookings == null && !r.scheduled) {
     setTimeout(
@@ -10,6 +25,7 @@ export const useBookings = () => {
         setBookings([
           {
             name: "Rob, Lena & Tawseef vs. javascript",
+            start: Time.at(13, 30),
           },
         ]);
       },
