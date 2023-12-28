@@ -8,7 +8,7 @@ export const Bookings = () => {
   return (
     <div>
       {isLoading ? (
-          <LoadingSpinner />
+        <LoadingSpinner />
       ) : (
         <ul>
           {bookings.map((game, i) => <Booking game={game} key={i} />)}

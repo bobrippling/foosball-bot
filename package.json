@@ -1,14 +1,22 @@
 {
   "dependencies": {
-    "@rollup/plugin-commonjs": "^25.0.7",
-    "@rollup/plugin-node-resolve": "^15.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "rollup": "^4.9.1",
-    "rollup-plugin-jsx": "^1.0.3",
-    "rollup-plugin-polyfill-node": "^0.13.0"
+    "react-scripts": "^5.0.1"
   },
   "scripts": {
-    "build": "rollup -c"
+    "start": "react-scripts start"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
