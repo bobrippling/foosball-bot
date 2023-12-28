@@ -18,6 +18,14 @@
     grid-area: timeslots;
 }
 
+.booking {
+    display: grid;
+    grid-template-areas: "timeslot timeslot timeslot timeslot";
+}
+
+.booking > * {
+    grid-area: "timeslot";
+}
 
 .header {
     background: rgb(244, 205, 147);

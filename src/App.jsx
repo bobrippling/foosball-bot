@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Items } from "./Items.jsx";
 import { Timetable } from "./Timetable.jsx";
-import { Bookings } from "./Bookings.jsx";
 import { AddBooking } from "./AddBooking.jsx";
 import './App.css';
 
@@ -15,7 +14,6 @@ export const App = () => {
         </div>
         <div className="timeslots section">
           <Timetable />
-          <Bookings />
           <AddBooking />
         </div>
       </div>
