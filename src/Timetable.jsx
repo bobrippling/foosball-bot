@@ -3,7 +3,7 @@ export const Timetable = () => {
     return (
         <div>
             <h3>Timeslots</h3>
-            {times.map(time => <button type="button">{time}</button>)}
+            {times.map((time, i) => <button type="button" key={i}>{time}</button>)}
         </div>
     )
 }
