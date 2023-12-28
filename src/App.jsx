@@ -1,11 +1,15 @@
-import React from "react";
-import { createRoot } from 'react-dom/client';
+import React, { useState } from "react";
+import ReactDOM from "react-dom/client";
+import { Bookings } from "./Bookings.jsx";
 
-const App = () => (
-  <div className="app">
-    Hello
-  </div>
-);
+const App = () => {
+  return (
+    <div className="app">
+      <Bookings />
+    </div>
+  );
+};
 
-const root = document.querySelector("#root");
-createRoot(root).render(<App />);
+ReactDOM
+  .createRoot(document.querySelector("#root"))
+  .render(<App />);
