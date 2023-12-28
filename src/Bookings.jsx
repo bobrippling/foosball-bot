@@ -20,6 +20,6 @@ export const Bookings = () => {
 
 const Booking = ({ game }) => (
   <li>
-    {game.name}
+    {game.time.format()} - {game.name}
   </li>
 )
