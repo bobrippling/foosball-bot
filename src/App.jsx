@@ -8,15 +8,15 @@ import './App.css';
 export const App = () => {
   return (
     <div className="app">
-      <h1>Social Hub Operator</h1>
+      <h1 className="header">Social Hub Operator</h1>
       <div className="container">
-        <div className="items">
+        <div className="items section">
           <Items />
         </div>
-        <div className="timeslots">
-          <AddBooking />
-          <Bookings />
+        <div className="timeslots section">
           <Timetable />
+          <Bookings />
+          <AddBooking />
         </div>
       </div>
     </div>

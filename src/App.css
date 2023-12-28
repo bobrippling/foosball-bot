@@ -18,3 +18,35 @@
     grid-area: timeslots;
 }
 
+
+.header {
+    background: rgb(244, 205, 147);
+    color: rgb(154, 5, 29);
+}
+
+.section {
+    border: 1px solid rgb(241, 188, 176);
+    background: rgb(244, 241, 223);
+    color: rgb(61, 64, 90);
+}
+
+.title {
+    background: rgb(228, 123, 98);
+    color: white;
+}
+
+.section > .title, .header {
+    margin-top: 0;
+}
+
+.title, .header {
+    padding: 10px;
+}
+
+body {
+    margin: 0;
+}
+
+.container > .section {
+    margin: 10px;
+}
