@@ -1,17 +1,20 @@
-.container {  display: grid;
+.container {
+    display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     gap: 0px 0px;
     grid-auto-flow: row;
     grid-template-areas:
-      "Items Timeslots Timeslots"
-      ". . ."
-      ". . .";
-  }
-  
-  .Items { grid-area: Items; }
-  
-  .Timeslots { 
-    grid-area: Timeslots; 
-  }
-  
+        "items timeslots timeslots"
+        ". . ."
+        ". . .";
+}
+
+.items {
+    grid-area: items;
+}
+
+.timeslots {
+    grid-area: timeslots;
+}
+

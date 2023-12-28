@@ -10,10 +10,10 @@ export const App = () => {
     <div className="app">
       <h1>Social Hub Operator</h1>
       <div className="container">
-        <div className="Items">
+        <div className="items">
           <Items />
         </div>
-        <div className="Timeslots">
+        <div className="timeslots">
           <AddBooking />
           <Bookings />
           <Timetable />
