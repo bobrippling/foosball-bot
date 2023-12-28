@@ -11,6 +11,11 @@ export class Time {
     return new Time(h, m);
   }
 
+  static from(str) {
+    const [h, m] = str.split(":");
+    return Time.at(Number(h), Number(m))
+  }
+
   overlaps(other) {
     const thisStart = this.h * 60 + this.m;
     const otherStart = other.h * 60 + other.m;
