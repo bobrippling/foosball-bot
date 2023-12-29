@@ -1,9 +1,12 @@
 import { LoadingSpinner } from "./LoadingSpinner.jsx";
 import { useBookings } from "./bookings";
 import { Time } from "./time"
+import React, { useState } from 'react';
+import { AddBooking } from "./AddBooking.jsx";
 
 export const Timetable = () => {
     const { isLoading, data: bookings } = useBookings();
+    const [showAddBooking, setShowAddBooking] = useState(false)
 
     const times = [];
     for(let hr = 8; hr < 22; hr++){
@@ -23,7 +26,12 @@ export const Timetable = () => {
         return null;
     };
 
+    const startBooking = (time) => (
+        setShowAddBooking(true)
+    );
+
     const Timeslots = () => (
+
         times.map((time, i) => {
             const title = bookingTitle(time);
 
@@ -34,7 +42,7 @@ export const Timetable = () => {
                     <span>{title}</span>
                 </div>
             ) : (
-                <button type="button" key={i}>{time}</button>
+                <button type="button" key={i} onClick={startBooking(time)}>{time}</button>
             )
         })
     );
@@ -45,6 +53,7 @@ export const Timetable = () => {
             <div className="booking">
             {isLoading ? <LoadingSpinner /> : <Timeslots />}
             </div>
+            {showAddBooking ? <AddBooking /> : <></>}
         </>
     )
 }
