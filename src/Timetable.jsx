@@ -42,7 +42,7 @@ export const Timetable = () => {
                     <span>{title}</span>
                 </div>
             ) : (
-                <button type="button" key={i} onClick={startBooking(time)}>{time}</button>
+                <button type="button" key={i} onClick={()=>startBooking(time)}>{time}</button>
             )
         })
     );
