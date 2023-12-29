@@ -1,3 +1,13 @@
+html {
+    --header-bg: rgb(244, 205, 147);
+    --header-fg: rgb(154, 5, 29);
+    --border: rgb(241, 188, 176);
+    --section-bg: rgb(244, 241, 223);
+    --section-fg: rgb(61, 64, 90);
+    --title-bg: rgb(228, 123, 98);
+    --title-fg: white;
+}
+
 .container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -28,19 +38,19 @@
 }
 
 .header {
-    background: rgb(244, 205, 147);
-    color: rgb(154, 5, 29);
+    background: var(--header-bg);
+    color: var(--header-fg);
 }
 
 .section {
-    border: 1px solid rgb(241, 188, 176);
-    background: rgb(244, 241, 223);
-    color: rgb(61, 64, 90);
+    border: 1px solid var(--border);
+    background: var(--section-bg);
+    color: var(--section-fg);
 }
 
 .title {
-    background: rgb(228, 123, 98);
-    color: white;
+    background: var(--title-bg);
+    color: var(--title-fg);
 }
 
 .section > .title, .header {
