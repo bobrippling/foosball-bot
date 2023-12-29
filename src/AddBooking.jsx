@@ -53,11 +53,15 @@ export const AddBooking = () => {
     setDialogShown(false);
   };
 
+  const hideModal = () => {
+    setDialogShown(false);
+  };
+
   return (
     <div>
       <input disabled={!enabled} type="time" ref={timeElement} test-id="addbooking-time"></input>
       <button disabled={!enabled} onClick={onClick} test-id="addbooking-create">Create booking</button>
-      <Dialog shown={dialogShown}>
+      <Dialog shown={dialogShown} onBackgroundClick={hideModal}>
         <p>
           What would you like to call your game at {timeElement?.current?.value}?
         </p>
@@ -68,7 +72,7 @@ export const AddBooking = () => {
   )
 };
 
-const Dialog = ({ shown, children }) => {
+const Dialog = ({ shown, onBackgroundClick, children }) => {
   const portalContent = (
     <div className="modal-content">
       {children}
@@ -80,6 +84,17 @@ const Dialog = ({ shown, children }) => {
   React.useEffect(() => {
     modalEl.classList.toggle("modal-visible", shown);
   }, [shown, modalEl]);
+
+  const bgCheck = React.useCallback(e => {
+    if (e.target !== modalEl)
+      return;
+    onBackgroundClick(e);
+  }, [onBackgroundClick, modalEl]);
+
+  React.useEffect(() => {
+    modalEl.addEventListener("click", bgCheck);
+    return () => modalEl.removeEventListener("click", bgCheck);
+  }, [bgCheck, modalEl]);
 
   return shown
     ? createPortal(portalContent, modalEl)
