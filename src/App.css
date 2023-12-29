@@ -68,3 +68,20 @@ body {
 .container > .section {
     margin: 10px;
 }
+
+.modal-visible {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+}
+
+.modal-content {
+  align-self: center;
+  text-align: center;
+  background: var(--header-bg);
+  width: 100%;
+  color: var(--header-fg);
+  padding: 10px;
+}
